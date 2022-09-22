@@ -52,5 +52,5 @@ jobs:
     # Push is a shorthand for --output=type=registry
           push: true
     # List of tags
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/imageName:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/myimage:latest
         
