@@ -46,7 +46,7 @@ public class WebSecurityConfig {
 
                 .authenticationProvider(authenticationProvider())
                 .authorizeRequests()
-                .antMatchers("/sign-up/**").permitAll()
+                .antMatchers("/sign-up/**", "/user/**").permitAll()
                 .anyRequest()
                 .authenticated().and()
 

@@ -68,6 +68,7 @@ public class UserService implements UserDetailsService {
 
         Message result = Message.success("Sign up successful");
         result.add("EmailService", emailState);
+        result.add("token", token);
 
         return gson.toJson(result);
     }
