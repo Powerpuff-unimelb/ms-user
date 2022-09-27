@@ -67,10 +67,10 @@ jobs:
           curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
           chmod +x install.sh
           ./install.sh --accept-all-defaults
-          echo "$HOME/runner/bin" >> $GITHUB_PATH
-          exec -l $SHELL  
+          echo "/home/runner/bin" >> $GITHUB_PATH
+          exec -l $SHELL
       - name: Fix Config File Permissions
         run: |
-          oci setup repair-file-permissions --file $HOME/runner/.oci/config
-          oci setup repair-file-permissions --file $HOME/runner/.oci/key.pem
+          oci setup repair-file-permissions --file /home/runner/.oci/config
+          oci setup repair-file-permissions --file /home/runner/.oci/key.pem
         
