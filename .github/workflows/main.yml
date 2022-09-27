@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v2-preview
         with:
           name: 'user-service.jar'
-          path: build/libs/user-service.jar
+          path: target/user-service.jar
 #       - name: Docker Login
 #         uses: docker/login-action@v2.0.0
 #         with:
