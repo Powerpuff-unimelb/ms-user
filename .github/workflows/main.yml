@@ -52,7 +52,7 @@ jobs:
     # List of tags
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/myimage:latest
       
-      - name: 'Write Config & Key Files'
+      - name: Write Config & Key Files
         run: |
           mkdir ~/.oci
           echo "[DEFAULT]" >> ~/.oci/config
