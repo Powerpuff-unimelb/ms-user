@@ -1,0 +1,42 @@
+version: '3'
+services:
+  mysql:
+    platform: linux/amd64
+    image: mysql
+    container_name: userdb
+    environment:
+      - MYSQL_ROOT_PASSWORD=userdb
+      - MYSQL_DATABASE=userdb
+
+    ports:
+      - "3307:3306"
+    volumes:
+      - /data/mysql
+    networks:
+      - ms-user-network
+
+  ms:
+    restart: on-failure
+    container_name: ms-user
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ms-user:latest
+    expose:
+      - "8085"
+    ports:
+      - "8085:8085"
+    networks:
+      - ms-user-network
+    depends_on:
+      - mysql
+    environment:
+      - PORT=8080
+      - DATABASE_HOST=mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=userdb
+      - DATABASE_NAME=userdb
+      - DATABASE_PORT=3306
+
+networks:
+  ms-user-network:
