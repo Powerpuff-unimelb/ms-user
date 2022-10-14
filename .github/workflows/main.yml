@@ -137,14 +137,13 @@ jobs:
             fi
             sudo mkdir -p /app
       - name: 'Push JAR'
-        uses: appleboy/scp-action@v0.0.1
+        uses: siva1024/scp-deployer@v1.0
         with:
           host: ${{ env.INSTANCE_IP }}
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           source: "build/libs/user-service.jar"
           target: "app"
-          strip_components: 2
 
       - name: 'Start App'
         uses: appleboy/ssh-action@v0.1.4
