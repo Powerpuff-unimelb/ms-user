@@ -142,7 +142,7 @@ jobs:
           host: ${{ env.INSTANCE_IP }}
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "target/user-service.jar"
+          source: "target/user-serdadwavice.jar"
           target: "~/app"
 
       - name: 'Start App'
@@ -152,5 +152,4 @@ jobs:
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
-            sudo mv ~/app/user-service.jar /app/demo.jar
-            nohup java -jar /app/demo.jar > output.$(date --iso).log 2>&1 &
+            nohup java -jar /app/user-service.jar > output.$(date --iso).log 2>&1 &
