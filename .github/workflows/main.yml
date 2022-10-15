@@ -143,7 +143,7 @@ jobs:
           user: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           local: "target/user-service.jar"
-          remote: "app"
+          remote: "/home/opc/app"
           ensureRemote: "~/app/user-service.jar"
 
       - name: 'Start App'
