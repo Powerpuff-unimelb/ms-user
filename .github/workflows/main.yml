@@ -143,7 +143,7 @@ jobs:
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           source: "target/user-service.jar"
-          target: "app"
+          target: "appwdawfaw"
 
       - name: 'Start App'
         uses: appleboy/ssh-action@v0.1.4
@@ -152,5 +152,5 @@ jobs:
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
-            sudo mv "~/app/user-service.jar" "/app/cicd-demo.jar"
+            sudo mv ~/app/user-service.jar /app/cicd-demo.jar
             nohup java -jar /app/cicd-demo.jar > output.$(date --iso).log 2>&1 &
