@@ -142,7 +142,7 @@ jobs:
           host: ${{ env.INSTANCE_IP }}
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "target/user-serdadwavice.jar"
+          source: "target/user-service.jar"
           target: "~/app"
 
       - name: 'Start App'
