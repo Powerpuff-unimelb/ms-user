@@ -137,13 +137,13 @@ jobs:
             fi
             sudo mkdir -p /app
       - name: 'Push JAR'
-        uses: siva1024/scp-deployer@v1.0
+        uses: horochx/deploy-via-scp@1.1.0
         with:
           host: ${{ env.INSTANCE_IP }}
-          username: opc
+          user: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "target/user-service.jar"
-          target: "appwdawfaw"
+          local: "target/user-service.jar"
+          remote: "appwdawfaw"
 
       - name: 'Start App'
         uses: appleboy/ssh-action@v0.1.4
