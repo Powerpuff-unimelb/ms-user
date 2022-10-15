@@ -144,7 +144,6 @@ jobs:
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           local: "target/user-service.jar"
           remote: "/home/opc/app"
-          ensureRemote: "~/app/user-service.jar"
 
       - name: 'Start App'
         uses: appleboy/ssh-action@v0.1.4
@@ -153,5 +152,5 @@ jobs:
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
-            sudo mv "~/app/user-service.jar" "/app/cicd-demo.jar"
+            sudo mv "/home/opc/appuser-service.jar" "/home/opc/app/cicd-demo.jar"
             nohup java -jar /app/cicd-demo.jar > output.$(date --iso).log 2>&1 &
