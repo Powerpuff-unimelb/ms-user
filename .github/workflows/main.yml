@@ -152,4 +152,4 @@ jobs:
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
-            nohup java -jar /home/opc/app/user-service.jar > output.$(date --iso).log 2>&1 &
+            nohup java -jar "/home/opc/app/user-service.jar" > output.$(date --iso).log 2>&1 &
