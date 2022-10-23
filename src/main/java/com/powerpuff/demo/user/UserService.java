@@ -8,6 +8,7 @@ import com.powerpuff.demo.registration.token.ConfirmationTokenService;
 import com.powerpuff.demo.security.message.Message;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -65,19 +66,13 @@ public class UserService implements UserDetailsService {
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         String link = "http://localhost:8082/sign-up/confirm?token=" + token;
-        String emailState = emailService.sendSimpleMail(buildEmail(user.getEmail(), user.getFirstName(), link));
+//        String emailState = emailService.sendHtmlMail(emailService.buildEmail(user.getEmail(), user.getFirstName(), link));
 
         Message result = Message.success("Sign up successful");
-        result.add("EmailService", emailState);
+//        result.add("EmailService", emailState);
         result.add("token", token);
 
         return gson.toJson(result);
-    }
-
-    private EmailDetails buildEmail(String email, String name, String link) {
-        String message = "Hello " + name + ", use this link to confirm your email:\n" + link;
-        String subject = "Confirm your email.";
-        return new EmailDetails(email, message, subject, "");
     }
 
     public void enableUser(String email) {
