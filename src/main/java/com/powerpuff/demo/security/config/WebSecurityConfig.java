@@ -1,5 +1,6 @@
 package com.powerpuff.demo.security.config;
 
+import com.powerpuff.demo.security.jwt.JwtAuthenticationFilter;
 import com.powerpuff.demo.security.handler.*;
 import com.powerpuff.demo.user.UserService;
 import lombok.AllArgsConstructor;
@@ -11,9 +12,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
 @AllArgsConstructor
@@ -40,15 +44,18 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(STATELESS).and()
 //                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                    .ignoringAntMatchers("/sign-up/**").and()
                 .cors().and()
 
                 .authenticationProvider(authenticationProvider())
                 .authorizeRequests()
-                .antMatchers("/sign-up/**", "/user/**").permitAll()
+                .antMatchers("/sign-up/**", "/user/getUsername").permitAll()
                 .anyRequest()
                 .authenticated().and()
+
+                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 
                 .formLogin()
                 .permitAll()
