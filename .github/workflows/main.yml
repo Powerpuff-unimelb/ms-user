@@ -138,7 +138,7 @@ jobs:
           user: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           local: "target/user-service.jar"
-          remote: "/home/opc/app"
+          remote: "app"
 
       - name: 'Start App'
         uses: appleboy/ssh-action@v0.1.4
