@@ -130,7 +130,7 @@ jobs:
             else
               kill -9 $pid
             fi
-            sudo mkdir -p /app123456
+            sudo mkdir -p app
       - name: 'Push JAR'
         uses: horochx/deploy-via-scp@1.1.0
         with:
