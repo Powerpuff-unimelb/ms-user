@@ -5,6 +5,7 @@ import com.powerpuff.demo.Email.EmailService;
 import com.powerpuff.demo.registration.token.ConfirmationTokenService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -21,6 +22,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
+@Disabled
 class UserServiceTest {
 
     @Mock
