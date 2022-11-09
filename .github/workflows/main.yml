@@ -138,7 +138,7 @@ jobs:
           username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           source: "target/user-service.jar"
-          target: "app"
+          target: "user-service"
           strip_components: 2
 
       - name: 'Start App'
