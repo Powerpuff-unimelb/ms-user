@@ -130,15 +130,16 @@ jobs:
             else
               kill -9 $pid
             fi
-            sudo mkdir -p /app
+            sudo mkdir -p app
       - name: 'Push JAR'
-        uses: horochx/deploy-via-scp@1.1.0
+        uses: appleboy/scp-action@v0.1.3
         with:
           host: ${{ env.INSTANCE_IP }}
-          user: opc
+          username: opc
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          local: "target/user-service.jar"
-          remote: "/home/opc/app"
+          source: "target/user-service.jar"
+          target: "user-service"
+          strip_components: 2
 
       - name: 'Start App'
         uses: appleboy/ssh-action@v0.1.4
