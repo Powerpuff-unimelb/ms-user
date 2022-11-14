@@ -1,7 +1,6 @@
 version: '3'
 services:
-  mysql:
-    platform: linux/amd64
+  mysqldbserver:
     image: mysql
     container_name: userdb
     environment:
@@ -12,8 +11,6 @@ services:
       - "3307:3306"
     volumes:
       - /data/mysql
-    networks:
-      - ms-user-network
 
   ms:
     restart: on-failure
@@ -26,17 +23,5 @@ services:
       - "8085"
     ports:
       - "8085:8085"
-    networks:
-      - ms-user-network
     depends_on:
-      - mysql
-    environment:
-      - PORT=8080
-      - DATABASE_HOST=mysql
-      - DATABASE_USER=root
-      - DATABASE_PASSWORD=userdb
-      - DATABASE_NAME=userdb
-      - DATABASE_PORT=3306
-
-networks:
-  ms-user-network:
+      - mysqldbserver
