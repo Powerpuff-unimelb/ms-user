@@ -66,10 +66,10 @@ public class UserService implements UserDetailsService {
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         String link = "http://localhost:8082/sign-up/confirm?token=" + token;
-//        String emailState = emailService.sendHtmlMail(emailService.buildEmail(user.getEmail(), user.getFirstName(), link));
+        String emailState = emailService.sendHtmlMail(emailService.buildEmail(user.getEmail(), user.getFirstName(), link));
 
         Message result = Message.success("Sign up successful");
-//        result.add("EmailService", emailState);
+        result.add("EmailService", emailState);
         result.add("token", token);
 
         return gson.toJson(result);

@@ -20,8 +20,8 @@ services:
       dockerfile: Dockerfile
     image: ms-user:latest
     expose:
-      - "8085"
+      - "8082"
     ports:
-      - "8085:8085"
+      - "8082:8082"
     depends_on:
       - mysqldbserver
